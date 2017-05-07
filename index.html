@@ -17,8 +17,10 @@
         }
         $("#timer").text(moment(currentTime).format("h:mm:ss a"));
         $("#announce-timer").text(moment(nextAnnounceTime).format("h:mm:ss a"));
-        var timeDifference = moment(nextAnnounceTime).subtract(moment(currentTime));
-        $("#announce-countdown").text(timeDifference.format("h:mm:ss"));
+        var timeDifference = moment.duration(moment(nextAnnounceTime).diff(moment(currentTime)));
+        var diffMins = ('0'+timeDifference.minutes()).slice(-1);
+        var diffSecs = ('0'+timeDifference.seconds()).slice(-1);
+        $("#announce-countdown").text(diffMins + ':' + diffSecs);
         if (bossType % 3 == 0) {
           // Rain
           bossName = "Croxar (Rain)";
@@ -40,7 +42,7 @@
   <h1>Poh/Iksa Celestial Basin Timer (WIP)</h1>
   <div id="timer"></div>
   <div>
-    Next announce: <span id="announce-timer"></span> (<span id="announce-countdown"></span>)
+    Next announce: <span id="announce-timer"></span> (-<span id="announce-countdown"></span>)
   </div>
   <div>
     Next boss: <span id="boss-type"></span>
