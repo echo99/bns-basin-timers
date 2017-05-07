@@ -4,7 +4,7 @@
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script type="text/javascript">
     $(document).ready(function() {
-      var baseTime = 1494193620000;
+      var baseTime = 1494193644000;
       var spawnInterval = 2580000; // 43 minutes in milliseconds
       function updateTimer() {
         var currentTime = Date.now();
@@ -18,8 +18,14 @@
         $("#timer").text(moment(currentTime).format("h:mm:ss a"));
         $("#announce-timer").text(moment(nextAnnounceTime).format("h:mm:ss a"));
         var timeDifference = moment.duration(moment(nextAnnounceTime).diff(moment(currentTime)));
-        var diffMins = ('0'+timeDifference.minutes()).slice(-1);
-        var diffSecs = ('0'+timeDifference.seconds()).slice(-1);
+        var diffMins = timeDifference.minutes();
+        var diffSecs = timeDifference.seconds();
+        if (diffMins < 10) {
+          diffMins = '0' + diffMins;
+        }
+        if (diffSecs < 10) {
+          diffSecs = '0' + diffSecs;
+        }
         $("#announce-countdown").text(diffMins + ':' + diffSecs);
         if (bossType % 3 == 0) {
           // Rain
