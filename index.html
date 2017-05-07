@@ -1,8 +1,20 @@
 <html>
 <head>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      function updateTimer() {
+        $("#timer").text(moment().format("dddd, MMMM Do YYYY, h:mm:ss a"));
+      }
+
+      setInterval(updateTimer, 1000);
+    });
+  </script>
 </head>
 <body>
   <h1>Hello!</h1>
+  <div id="timer">
+  </div>
 </body>
 </html>
