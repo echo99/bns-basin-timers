@@ -15,8 +15,10 @@
           nextAnnounceTime += spawnInterval;
           bossType++;
         }
-        $("#timer").text(moment().format("h:mm:ss a"));
+        $("#timer").text(moment(currentTime).format("h:mm:ss a"));
         $("#announce-timer").text(moment(nextAnnounceTime).format("h:mm:ss a"));
+        var timeDifference = moment(nextAnnounceTime).subtract(moment(currentTime));
+        $("#announce-countdown").text(timeDifference.format("h:mm:ss"));
         if (bossType % 3 == 0) {
           // Rain
           bossName = "Croxar (Rain)";
